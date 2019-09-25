@@ -1,0 +1,586 @@
+- phpMyAdmin SQL Dump
+-- version 4.8.5
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: 127.0.0.1
+-- Tiempo de generaciÃ³n: 05-06-2019 a las 08:35:04
+-- VersiÃ³n del servidor: 10.1.38-MariaDB
+-- VersiÃ³n de PHP: 7.1.28
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Base de datos: `frutomania`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `categoriaproducto`
+--
+
+CREATE TABLE `categoriaproducto` (
+  `id_categoria` int(10) NOT NULL,
+  `nombre` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `categoriaproducto`
+--
+
+INSERT INTO `categoriaproducto` (`id_categoria`, `nombre`) VALUES
+(1, 'De Grano'),
+(2, 'Citricas'),
+(3, 'Exoticas'),
+(4, 'Otras');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `comerciante`
+--
+
+CREATE TABLE `comerciante` (
+  `id_comer` int(10) NOT NULL,
+  `usuario_comer` varchar(20) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cultivo`
+--
+
+CREATE TABLE `cultivo` (
+  `Id` int(10) NOT NULL,
+  `nombre_finca` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
+  `tipo_cultivo` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
+  `hectarea_No.` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `estado_arriba`
+--
+
+CREATE TABLE `estado_arriba` (
+  `id_estado` int(10) NOT NULL,
+  `nombre` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `estado_arriba`
+--
+
+INSERT INTO `estado_arriba` (`id_estado`, `nombre`) VALUES
+(1, 'Activo'),
+(2, 'EnCotizacion'),
+(3, 'Vendido'),
+(4, 'InCotizacion');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `estado_usuario`
+--
+
+CREATE TABLE `estado_usuario` (
+  `Id` int(11) NOT NULL,
+  `nombre` varchar(20) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `estado_usuario`
+--
+
+INSERT INTO `estado_usuario` (`Id`, `nombre`) VALUES
+(1, 'activo');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `finca`
+--
+
+CREATE TABLE `finca` (
+  `Id` int(10) NOT NULL,
+  `nombre_finca` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
+  `productos_comercializa` varchar(30) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `fruticultor`
+--
+
+CREATE TABLE `fruticultor` (
+  `id_fruti` int(11) NOT NULL,
+  `fruti_usuario` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `persona`
+--
+
+CREATE TABLE `persona` (
+  `Id_persona` int(11) NOT NULL,
+  `nombre1` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
+  `nombre2` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
+  `apellido1` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
+  `apellido2` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
+  `cedula` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
+  `telefono` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
+  `correo` varchar(30) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `persona`
+--
+
+INSERT INTO `persona` (`Id_persona`, `nombre1`, `nombre2`, `apellido1`, `apellido2`, `cedula`, `telefono`, `correo`) VALUES
+(1, 'Jhon', 'Jairo', 'Barrios', 'Morales', '1072', '3115594240', 'monjairo12@hotmail.com'),
+(38, 'Jairo', 'Kane', 'Arbelaez', 'Cesamo', '632', '3124562312', 'sesam@com'),
+(39, 'Alejandro', 'Marron', 'Jimenez', 'Arcaico', '789', '3124562345', 'ale@com'),
+(40, 'Oscar', 'Hernan', 'Aldana', 'Quique', '753', '3124568952', 'Oscar@com'),
+(41, 'Alejandro', 'Jhon', 'Beltran', 'Ruiz', '456', '3124568545', 'Aejo@com');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `prevendidos`
+--
+
+CREATE TABLE `prevendidos` (
+  `id_prevendidos` int(11) NOT NULL,
+  `nombre` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `cantidad` int(11) NOT NULL,
+  `precio` int(11) NOT NULL,
+  `vendedor` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
+  `cliente` varchar(20) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `prevendidos`
+--
+
+INSERT INTO `prevendidos` (`id_prevendidos`, `nombre`, `cantidad`, `precio`, `vendedor`, `cliente`) VALUES
+(1, 'Coco', 400, 500, '456', '632'),
+(2, 'Coco', 200, 500, '456', '632');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `produccion`
+--
+
+CREATE TABLE `produccion` (
+  `Id` int(10) NOT NULL,
+  `nombre_finca` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
+  `nombre_producto` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
+  `ref_profducto` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
+  `cultivo` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
+  `cantidad` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `producto`
+--
+
+CREATE TABLE `producto` (
+  `Id` int(10) NOT NULL,
+  `nombre` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
+  `imagen` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
+  `producto_categoria` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `producto`
+--
+
+INSERT INTO `producto` (`Id`, `nombre`, `imagen`, `producto_categoria`) VALUES
+(1, 'Aguacate', 'aguacate', 4),
+(2, 'Aguacate hass', 'aguacatehass', 4),
+(3, 'Banano Criollo', 'bananocriollo', 3),
+(4, 'Banano Uraba', 'bananouruba', 3),
+(5, 'Breva', 'breva', 3),
+(6, 'Coco', 'coco', 3),
+(7, 'Curuba', 'curuba', 1),
+(8, 'Durazno', 'durazno', 1),
+(9, 'Feijoba', 'feijoba', 3),
+(10, 'Fresa', 'fresa', 4),
+(11, 'Granadilla', 'granadilla', 1),
+(12, 'Guanabana', 'guanabana', 1),
+(13, 'Guayaba', 'guayaba', 1),
+(14, 'limon Comun', 'limoncomun', 2),
+(15, 'limon Tahiti', 'limontahiti', 2),
+(16, 'Lulo', 'lulo', 3),
+(17, 'Mandarina', 'imagenes/mandarina.png', 2),
+(18, 'Mango Chanqueto', 'imagenes/mangochancleto.png', 3),
+(19, 'Mango De Azucar', 'imagenes/mangodeazucar.png', 3),
+(20, 'Mango Reina', 'imagenes/mangoreina.png', 3),
+(21, 'Manzana', 'imagenes/manzana.png', 1),
+(22, 'Maracuya', 'imagenes/maracuya.png', 1),
+(23, 'Melon', 'imagenes/melon.png', 4),
+(24, 'Mora De Castilla', 'imagenes/moradecastilla.png', 1),
+(25, 'Naranja', 'imagenes/naranja.png', 2),
+(26, 'Naranja Grey', 'imagenes/naranjagrey.png', 2),
+(27, 'Naranja Ombligona', 'imagenes/naranjaombligona.png', 2),
+(28, 'Papaya', 'imagenes/papaya.png', 3),
+(29, 'Patilla', 'imagenes/patilla.png', 1),
+(30, 'PiÃ±a', 'imagenes/piÃ±a.png', 3),
+(31, 'Pitaya', 'imagenes/pitaya.png', 4),
+(32, 'Tomate de Arbol', 'imagenes/tomatedearbol.png', 4),
+(33, 'Uva Champa', 'imagenes/uvachampa.png', 1),
+(34, 'Uva Negra', 'imagenes/uvanegra.png', 1),
+(35, 'Uva Roja', 'imagenes/uvaroja.png', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `producto_arriba`
+--
+
+CREATE TABLE `producto_arriba` (
+  `id_arriba` int(10) NOT NULL,
+  `imagen` varchar(100) NOT NULL,
+  `fecha_inicio` date NOT NULL,
+  `fecha_fin` date NOT NULL,
+  `precio` int(11) NOT NULL,
+  `cantidad` int(11) NOT NULL,
+  `descripcion` varchar(300) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `fruticultor` varchar(20) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `fruta` int(10) NOT NULL,
+  `estado` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `producto_arriba`
+--
+
+INSERT INTO `producto_arriba` (`id_arriba`, `imagen`, `fecha_inicio`, `fecha_fin`, `precio`, `cantidad`, `descripcion`, `fruticultor`, `fruta`, `estado`) VALUES
+(1, 'images.png', '2019-06-04', '0000-00-00', 500, 0, 'coco de la mejor calidad', '456', 6, 2),
+(2, 'images.png', '2019-06-05', '2019-06-21', 1200, 800, 'Mnazana de la mejor calidad', '456', 21, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `producto_comerciante`
+--
+
+CREATE TABLE `producto_comerciante` (
+  `id_productocomerciante` int(10) NOT NULL,
+  `producto` int(10) NOT NULL,
+  `comerciante` varchar(20) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `fruticultor` varchar(20) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `mensaje` varchar(300) NOT NULL,
+  `ofrecer` int(11) NOT NULL,
+  `Estadocf` int(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `producto_comerciante`
+--
+
+INSERT INTO `producto_comerciante` (`id_productocomerciante`, `producto`, `comerciante`, `fruticultor`, `mensaje`, `ofrecer`, `Estadocf`) VALUES
+(1, 1, '632', '456', '', 600, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tipo_usuario`
+--
+
+CREATE TABLE `tipo_usuario` (
+  `Id` int(10) NOT NULL,
+  `nombre` varchar(30) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `tipo_usuario`
+--
+
+INSERT INTO `tipo_usuario` (`Id`, `nombre`) VALUES
+(1, 'Cliente'),
+(2, 'Fruticultor'),
+(3, 'Administrador'),
+(4, 'AdministradorSecundario'),
+(7, 'Fruticultor');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuario`
+--
+
+CREATE TABLE `usuario` (
+  `user` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
+  `fecha` date NOT NULL,
+  `cedula` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
+  `Id_usu` int(10) NOT NULL,
+  `estadoidestado` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`user`, `password`, `fecha`, `cedula`, `Id_usu`, `estadoidestado`) VALUES
+('Jhon', '$2y$10$ilJIM28F1BAW/bLXK.IgQej3ZcNzpzh45T7y5eu0IqSe9QROkdVHu', '2019-05-30', '1072', 3, 1),
+('Alejo', '$2y$10$YdilkCT5fSpuonegXUJyeejtAaeddRp0rwLy0QkwLXM9WQzK4PdhS', '2019-06-04', '456', 2, 1),
+('sesamo', '$2y$10$ilJIM28F1BAW/bLXK.IgQej3ZcNzpzh45T7y5eu0IqSe9QROkdVHu', '2019-05-31', '632', 1, 1),
+('Oscar', '$2y$10$YPeX9yAQ6jBI.K1hsXfwjurMz3zGGJee1eZCHgQ9G0qP4WQ5Qk8nu', '2019-05-31', '753', 4, 1),
+('alejo', '$2y$10$gwBushg7sRbR5uQhuRAi8ewGSxv0vRBCm302uTJREX.5/NpnDLHU.', '2019-05-31', '789', 1, 1);
+
+--
+-- Ã�ndices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `categoriaproducto`
+--
+ALTER TABLE `categoriaproducto`
+  ADD PRIMARY KEY (`id_categoria`);
+
+--
+-- Indices de la tabla `comerciante`
+--
+ALTER TABLE `comerciante`
+  ADD PRIMARY KEY (`id_comer`),
+  ADD KEY `usuario_comer` (`usuario_comer`);
+
+--
+-- Indices de la tabla `cultivo`
+--
+ALTER TABLE `cultivo`
+  ADD PRIMARY KEY (`Id`);
+
+--
+-- Indices de la tabla `estado_arriba`
+--
+ALTER TABLE `estado_arriba`
+  ADD PRIMARY KEY (`id_estado`);
+
+--
+-- Indices de la tabla `estado_usuario`
+--
+ALTER TABLE `estado_usuario`
+  ADD PRIMARY KEY (`Id`);
+
+--
+-- Indices de la tabla `finca`
+--
+ALTER TABLE `finca`
+  ADD PRIMARY KEY (`Id`);
+
+--
+-- Indices de la tabla `fruticultor`
+--
+ALTER TABLE `fruticultor`
+  ADD PRIMARY KEY (`id_fruti`),
+  ADD KEY `fruti_usuario` (`fruti_usuario`);
+
+--
+-- Indices de la tabla `persona`
+--
+ALTER TABLE `persona`
+  ADD PRIMARY KEY (`Id_persona`),
+  ADD KEY `cedula_2` (`cedula`);
+
+--
+-- Indices de la tabla `prevendidos`
+--
+ALTER TABLE `prevendidos`
+  ADD PRIMARY KEY (`id_prevendidos`);
+
+--
+-- Indices de la tabla `produccion`
+--
+ALTER TABLE `produccion`
+  ADD PRIMARY KEY (`Id`);
+
+--
+-- Indices de la tabla `producto`
+--
+ALTER TABLE `producto`
+  ADD PRIMARY KEY (`Id`),
+  ADD KEY `producto_categoria` (`producto_categoria`);
+
+--
+-- Indices de la tabla `producto_arriba`
+--
+ALTER TABLE `producto_arriba`
+  ADD PRIMARY KEY (`id_arriba`),
+  ADD KEY `fruta` (`fruta`),
+  ADD KEY `estado` (`estado`),
+  ADD KEY `fruticultor` (`fruticultor`);
+
+--
+-- Indices de la tabla `producto_comerciante`
+--
+ALTER TABLE `producto_comerciante`
+  ADD PRIMARY KEY (`id_productocomerciante`),
+  ADD KEY `producto` (`producto`),
+  ADD KEY `comerciante` (`comerciante`),
+  ADD KEY `fruticultor` (`fruticultor`),
+  ADD KEY `fruticultor_2` (`fruticultor`);
+
+--
+-- Indices de la tabla `tipo_usuario`
+--
+ALTER TABLE `tipo_usuario`
+  ADD PRIMARY KEY (`Id`);
+
+--
+-- Indices de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`cedula`),
+  ADD KEY `estadoidestado` (`estadoidestado`),
+  ADD KEY `Id_usu` (`Id_usu`) USING BTREE;
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `categoriaproducto`
+--
+ALTER TABLE `categoriaproducto`
+  MODIFY `id_categoria` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `comerciante`
+--
+ALTER TABLE `comerciante`
+  MODIFY `id_comer` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `cultivo`
+--
+ALTER TABLE `cultivo`
+  MODIFY `Id` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `estado_arriba`
+--
+ALTER TABLE `estado_arriba`
+  MODIFY `id_estado` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `estado_usuario`
+--
+ALTER TABLE `estado_usuario`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `finca`
+--
+ALTER TABLE `finca`
+  MODIFY `Id` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `fruticultor`
+--
+ALTER TABLE `fruticultor`
+  MODIFY `id_fruti` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `persona`
+--
+ALTER TABLE `persona`
+  MODIFY `Id_persona` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+
+--
+-- AUTO_INCREMENT de la tabla `prevendidos`
+--
+ALTER TABLE `prevendidos`
+  MODIFY `id_prevendidos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `produccion`
+--
+ALTER TABLE `produccion`
+  MODIFY `Id` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `producto`
+--
+ALTER TABLE `producto`
+  MODIFY `Id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+
+--
+-- AUTO_INCREMENT de la tabla `producto_arriba`
+--
+ALTER TABLE `producto_arriba`
+  MODIFY `id_arriba` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `producto_comerciante`
+--
+ALTER TABLE `producto_comerciante`
+  MODIFY `id_productocomerciante` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `tipo_usuario`
+--
+ALTER TABLE `tipo_usuario`
+  MODIFY `Id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `persona`
+--
+ALTER TABLE `persona`
+  ADD CONSTRAINT `persona_ibfk_1` FOREIGN KEY (`cedula`) REFERENCES `usuario` (`cedula`);
+
+--
+-- Filtros para la tabla `producto`
+--
+ALTER TABLE `producto`
+  ADD CONSTRAINT `producto_ibfk_1` FOREIGN KEY (`producto_categoria`) REFERENCES `categoriaproducto` (`id_categoria`);
+
+--
+-- Filtros para la tabla `producto_arriba`
+--
+ALTER TABLE `producto_arriba`
+  ADD CONSTRAINT `producto_arriba_ibfk_2` FOREIGN KEY (`fruta`) REFERENCES `producto` (`Id`),
+  ADD CONSTRAINT `producto_arriba_ibfk_3` FOREIGN KEY (`estado`) REFERENCES `estado_arriba` (`id_estado`),
+  ADD CONSTRAINT `producto_arriba_ibfk_4` FOREIGN KEY (`fruticultor`) REFERENCES `usuario` (`cedula`);
+
+--
+-- Filtros para la tabla `producto_comerciante`
+--
+ALTER TABLE `producto_comerciante`
+  ADD CONSTRAINT `producto_comerciante_ibfk_2` FOREIGN KEY (`comerciante`) REFERENCES `usuario` (`cedula`),
+  ADD CONSTRAINT `producto_comerciante_ibfk_3` FOREIGN KEY (`fruticultor`) REFERENCES `usuario` (`cedula`);
+
+--
+-- Filtros para la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`estadoidestado`) REFERENCES `estado_usuario` (`Id`),
+  ADD CONSTRAINT `usuario_ibfk_3` FOREIGN KEY (`Id_usu`) REFERENCES `tipo_usuario` (`Id`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
